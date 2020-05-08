@@ -17,6 +17,8 @@ def resume():
 def set_data(key):
     try:
         data = request.get_json()
+        if (data == None):
+            return {'error': "request body must have 'value' specified"}
         server_data[key] = data["value"]
     except Exception as e:
         return {'error' : str(e)}
