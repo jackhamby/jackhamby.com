@@ -27,7 +27,10 @@ def set_data(key):
 @app.route('/cheese/<key>', methods=['GET'])
 def get_data(key):
     response = {}
-    response[key] = server_data[key]
+    try:
+        response[key] = server_data[key]
+    except Exception as e:
+        return {'error' : f'key {key} does not exist'}
     return response
 
 if __name__ == "__main__":
